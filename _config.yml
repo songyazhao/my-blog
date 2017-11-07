@@ -8,7 +8,7 @@ subtitle: #网站副标题
   tit2: 是个有理想向前拼搏的人
   tit3: 是个不容易妥协的人
   tit4: 是个安静的人～
-description: this is hexo-demo #网栈描述
+description: this is My blog #网站描述
 author: 糖醋里脊叉烧包 #你的名字
 language: zh-CN #网站使用的语言
 timezone: Asia/Shanghai #网站时区
@@ -68,15 +68,10 @@ pagination_dir: page #分页目录
 ## Themes: http://hexo.io/themes/ 主题
 theme: smackdown #当前主题名称
 
-# Deployment #部署到github
-#deploy:
-#  type: git
-#  repo: https://github.com/songyazhao/songyazhao.github.io.git
-#  branch: master
-
 # Deployment #部署到github 和 coding
 deploy:
   type: git
   repo:
-      github: git@github.com:songyazhao/songyazhao.github.io.git,master
-      coding: git@git.coding.net:songyazhao/songyazhao.git,master
+    github: https://github.com/songyazhao/songyazhao.github.io.git
+    coding: https://git.coding.net/songyazhao/songyazhao.git
+  branch: master
