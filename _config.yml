@@ -15,7 +15,7 @@ timezone: Asia/Shanghai #网站时区
 
 # URL #可以不用配置
 ## If your site is put in a subdirectory, set url as 'http://songyazhao.coding.me' and root as '/child/'
-url: http://songyazhao.coding.me #网址，搜索时会在搜索引擎中显示
+url: http://www.debugger.fun #网址，搜索时会在搜索引擎中显示
 root: / #网站根目录
 permalink: :year/:month/:day/:title/ #永久链接格式
 permalink_defaults: #永久链接中各部分的默认值
@@ -72,6 +72,6 @@ theme: darkdown #当前主题名称
 deploy:
   type: git
   repo:
-    github: https://github.com/songyazhao/songyazhao.github.io.git
-    coding: https://git.coding.net/songyazhao/songyazhao.git
+    github: git@github.com:songyazhao/songyazhao.github.io.git
+    coding: git@git.coding.net:songyazhao/songyazhao.git
   branch: master
