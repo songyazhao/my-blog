@@ -7,7 +7,7 @@ categories: NodeJS
 
 最近安装 [node-canvas](https://github.com/Automattic/node-canvas)，遇到一些问题，特此记录。这个模块的底层是C++编写的，用的时候时候需要 [node-gyp](https://github.com/nodejs/node-gyp#on-windows) 这个模块编译。
 
-## `node-gyp` 依赖 `Python 2.x` 环境，和 `Visual C++` 的构建环境
+## node-gyp 依赖 Python 2.x 环境，和 Visual C++ 的构建环境
 所以我们先来安装这些环境依赖。
 
 方法有二，推荐第一种，自动化配置不容易出错。
