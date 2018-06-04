@@ -1,0 +1,10 @@
+{
+  "name": "糖醋里脊叉烧包",
+  "version": "2.8.3",
+  "private": true,
+  "dependencies": {
+    "hexo-renderer-ejs": "*",
+    "hexo-renderer-stylus": "*",
+    "hexo-renderer-marked": "*"
+  }
+}
