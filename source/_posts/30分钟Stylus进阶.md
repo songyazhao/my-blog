@@ -1,8 +1,8 @@
 ---
 title: 30分钟Stylus进阶
 date: 2015-12-21 14:25:04
-tags: [Stylus, css]
-categories: css相关
+tags: [Stylus, CSS]
+categories: CSS
 ---
 写CSS，最繁琐的就是每个属性都要写冒号`:`，分号`;`，每个选择器都要带花括号`{}`。一次触键时间可能非常短，但是每行都要重复地输入一些符号，肯定会增加编码时间。后来出现了Less和Sass这些预编译语言，却依然没有减少这些冗余符号的输入，从这点上来说，我真的很不明白它们怎么会起Less这样的名字，也奇怪为什么它们这么火。（好吧，需要承认的是，能nesting，能写mixin和function等等的确是减少了时间，而且这些都发生在Stylus出生以前）
 <!-- more -->

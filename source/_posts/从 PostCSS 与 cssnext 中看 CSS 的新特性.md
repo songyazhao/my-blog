@@ -1,8 +1,8 @@
 ---
 title: 从 PostCSS 与 cssnext 中看 CSS 的新特性
 date: 2018-01-18 17:53:26
-tags: [css]
-categories: css相关
+tags: [CSS]
+categories: CSS相关
 ---
 
 今天刚好看了一下 PostCSS，看到了 [postcss-cssnext](http://cssnext.io/) 的网站，觉得用来学习一些新特性（虽然现在来看似乎不怎么新）。

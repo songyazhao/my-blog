@@ -1,8 +1,8 @@
 ---
 title: Yarn 和 Npm 命令行小抄
 date: 2017-03-02 17:12:56
-tags: [yarn, npm]
-categories: Node相关
+tags: [Yarn, Npm]
+categories: Node
 ---
 好，想必你对新的 JavaScript 包管理工具 [yarn](https://github.com/yarnpkg/yarn) 已经有所耳闻，并已通过 `npm i -g yarn` 进行了安装，现在想知道怎么样使用吗？如果你了解 npm，你已经会很大一部分啦！
 

@@ -2,7 +2,7 @@
 title: 盘点JavaScript里好用的原生API
 date: 2015-6-10 15:25:22
 tags: [JS技巧, 原生API]
-categories: JS相关
+categories: JS
 ---
 这段时间翻了一番JavaScript的api，发现不少好的轮子，省去造的麻烦了。
 <!-- more -->
