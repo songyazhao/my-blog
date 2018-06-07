@@ -5,11 +5,29 @@ tags: [Vue, Nuxt]
 categories: Vue
 ---
 
-<!-- 一件产品，要经历怎样的 -->
-<!-- 一份设计，要经历怎样的雕琢，才能。。 -->
+<!-- 一件产品，要经历怎样的构思，才能打造完美体验。 -->
+<!-- 一份设计，要经历怎样的揣摩，才能。。 -->
 <!-- 一个网页，要经历怎样的过程，才能抵达用户面前。 -->
 
-## 为什么使用Nuxt.js?
+本文结合实际项目进行讲解，部分案例摘自 [Nuxt.js](https://zh.nuxtjs.org) 官方文档。
+
+- [Nuxt.js简单介绍](#1)
+- [为什么使用Nuxt.js?](#2)
+- [项目创建](#3)
+- [项目配置](#4)
+- [页面路由(vue-router)](#5)
+- [状态管理(vuex)](#6)
+- [页面元信息(vue-meta)](#7)
+- [埋点](#8)
+
+<h2 id="1">Nuxt.js简单介绍</h2>
+
+2016 年 10 月 25 日，[zeit.co](https://zeit.co/) 背后的团队对外发布了 [Next.js](https://zeit.co/blog/next)，一个 React 的服务端渲染应用框架。几小时后，与 Next.js 异曲同工，一个基于 Vue.js 的服务端渲染应用框架应运而生，我们称之为：Nuxt.js。
+
+Nuxt.js 是一个基于 Vue.js 的通用应用框架。通过对客户端/服务端基础架构的抽象组织，Nuxt.js 主要关注的是应用的 UI渲染。Nuxt.js 预设了利用Vue.js开发服务端渲染的应用所需要的各种配置。
+
+<h2 id="2">为什么使用Nuxt.js?</h2>
+
 - SSR（服务端渲染）的页面初始加载时间显然优于单页首屏渲染
 - 可以方便的对 SEO 进行管理
 - 无需配置页面路由，内置 `vue-rouer`，自动依据 pages 目录结构生成对应路由配置。
@@ -19,24 +37,22 @@ categories: Vue
 
 <!-- more -->
 
-## Nuxt.js简单介绍
+<h2 id="3">项目创建</h2>
 
-## 项目创建
-
-### 1. 目录结构
 为了便于大家快速使用，`Nuxt.js` 提供了很多模板
 
-[starter-template](https://github.com/nuxt-community/adonuxt-template)
+[starter-template](https://github.com/nuxt-community/adonuxt-template): 基础Nuxt.js模板
 
-[express-template](https://github.com/nuxt-community/express-template)
+[typescript-template](https://github.com/nuxt-community/typescript-template): 基于Typescript的Nuxt.js模板
 
-[koa-template](https://github.com/nuxt-community/koa-template)
+[express-template](https://github.com/nuxt-community/express-template): Nuxt.js + Express
 
-[typescript-template](https://github.com/nuxt-community/typescript-template)
+[koa-template](https://github.com/nuxt-community/koa-template): Nuxt.js + Koa
 
-[electron-template](https://github.com/nuxt-community/electron-template)
+[adonuxt-template](https://github.com/nuxt-community/adonuxt-template): Nuxt.js + AdonisJS
 
-...
+[electron-template](https://github.com/nuxt-community/electron-template): Nuxt.js + Electron
+<br>...
 
 等等，更多的可以在这里看到 [nuxt-community](https://github.com/nuxt-community)
 
@@ -102,8 +118,7 @@ nuxt-demo/
 ├── utils/                                //- 工具集
 │   ├── index.js
 │   ├── http.js                           //- axios
-│   ├── script.js                         //- <head> 中的 <script></script>
-│   ├── tracker.js                        //- 用户行为追踪(pv、ev)
+│   ├── tracker.js                        //- PV统计
 │   └── tracker-uitl.js
 ├── vendor/                               //- 第三方的库和插件
 │   └── index.js
@@ -114,7 +129,7 @@ nuxt-demo/
 └── README.md
 ```
 
-### 2. 项目配置
+<h2 id="4">项目配置</h2>
 
 Nuxt.js 默认的配置涵盖了大部分使用情形，可通过 `nuxt.config.js` 来覆盖默认的配置，下面相关配置根据实际项目驱动讲解，未涉及到的配置项可查阅 Nuxt.js 文档。
 
@@ -145,7 +160,7 @@ module.exports = {
       innerHTML: `alert(1)`
     }],
 
-    //- __dangerouslyDisableSanitizers 可以设置字符不被转义。
+    //- __dangerouslyDisableSanitizers 设置<script>中的内容不被转义。
     //- https://github.com/declandewet/vue-meta#__dangerouslydisablesanitizers-string
     __dangerouslyDisableSanitizers: ['script']
   }
@@ -227,6 +242,8 @@ module.exports = {
     },
 
     //- 这里可以自定义打包后的文件名
+    //- `hash` 项目中任何一个文件改动后就会被重新创建
+    //- `chunkhash` 是根据模块内容计算出的hash值，对应的文件发生内容变动就会重新计算
     //- 生成如下：
     //- <head>
     //-   ...
@@ -265,12 +282,136 @@ module.exports = {
 }
 ```
 
-### 3. 页面元信息
+<h2 id="5">页面布局(layouts)</h2>
+
+<style>
+.layout, .page, .component {
+  border: 2px solid cornflowerblue;
+  text-align: center;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+.layout {
+  color: brown;
+  font-size: 20px;
+  width: 400px;
+}
+.page, .component {
+  margin: 25px;
+}
+</style>
+<div class="layout">
+  layout
+  <div class="page">
+    page
+    <div class="component">
+      component
+    </div>
+    <div class="component">
+      component
+    </div>
+    <div class="component">
+      component
+    </div>
+  </div>
+</div>
+
+
+<h2 id="6">页面路由(vue-router)</h2>
+
+Nuxt.js 依据 pages 目录结构，自动生成 vue-router 模块的路由配置。
+
+
+
+<h2 id="7">状态管理(vuex)</h2>
+
+像普通的 Vue 应用一样，在 Nuxt.js 中也可以使用 vuex，而且无需额外 `npm install vuex --save` 和配置，只要直接在项目根目录创建 `store` 文件夹，Nuxt.js 会自动去寻找下面的 `.js` 文件，并自动进行状态树的模块划分。
+
+如果是 `index.js` 文件
+
+Nuxt.js 支持两种使用 store 的方式：
+
+普通方式：返回一个 Vuex.Store 实例，感觉很眼熟有木有
+
+> store/index.js
+```js
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const store = () => new Vuex.Store({
+  state: {
+    counter: 0
+  },
+
+  mutations: {
+    increment (state) {
+      state.counter++
+    }
+  }
+})
+
+export default store
+```
+
+模块方式：store 目录下的每个 `.js` 文件会被转换成为状态树指定命名的子模块，`index.js` 会被作为根模块
+
+> store/index.js
+```js
+export const state = () => ({
+  counter: 0
+})
+
+export const mutations = {
+  increment (state) {
+    state.counter++
+  }
+}
+```
+
+> store/todos.js
+```js
+export const state = () => ({
+  list: []
+})
+
+export const mutations = {
+  toggle (state, todo) {
+    todo.done = !todo.done
+  }
+}
+```
+
+最终渲染出来的状态树：
+
+```js
+new Vuex.Store({
+  state: { counter: 0 },
+  mutations: {
+    increment (state) {
+      state.counter++
+    }
+  },
+  modules: {
+    todos: {
+      state: {
+        list: []
+      },
+      mutations: {
+        toggle (state, { todo }) {
+          todo.done = !todo.done
+        }
+      }
+    }
+  }
+})
+```
+
+<h2 id="8">页面元信息(vue-meta)</h2>
 
 Nuxt.js 文档是这么说的：
-<br>使用 `head` 方法可以设置当前页面的头部标签。
-<br>在 `head` 方法里可通过 `this` 关键字来获取组件的数据，所以你可以利用页面组件的数据来个性化设置 meta 标签。
-<br>为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 `hid` 键为 meta 标签配一个唯一的标识编号。请阅读关于 [vue-meta](https://github.com/declandewet/vue-meta#lists-of-tags) 的更多信息。
+<br>使用 `head` 方法可以设置当前页面的头部标签，在 `head` 方法里可通过 `this` 关键字来获取组件的数据，所以你可以利用页面组件的数据来个性化设置 meta 标签。为了避免子组件中的 meta 标签不能正确覆盖父组件中相同的标签而产生重复的现象，建议利用 `hid` 键为 meta 标签配一个唯一的标识编号。请阅读关于 [vue-meta](https://github.com/declandewet/vue-meta#lists-of-tags) 的更多信息。
 
 官方示例：
 ```html
@@ -318,10 +459,8 @@ seo的配置文件写好了，接下来我们应该怎么才能注入这个配�
 //- 引入公共头和尾
 import DmHeader from './components/dm-header'
 import DmFooter from './components/dm-footer'
-//- <head>里要插入的script脚本
-import { redirectScript, baiduHmScript } from '../utils/script'
 
-//- SEO的中心化管理, 根据路由 `$route.name` 映射 Document <head>
+//- SEO 的中心化管理, 根据路由 `$route.name` 映射 Document <head>
 const heads = seo => function getHeadsMap() {
   const map = {}
 
@@ -331,7 +470,7 @@ const heads = seo => function getHeadsMap() {
   return map
 }
 
-const routeMapHead = heads(require('~/seo.config'))
+const routeMapHead = heads(require('../seo.config'))
 
 export default {
   components: { DmHeader, DmFooter },
@@ -396,24 +535,65 @@ module.exports = {
 }
 ```
 
-### 4. 埋点统计
+<h2 id="8">插件(plugins)</h2>
 
-*PV*
+插件可以让我们向 Vue 注入一些使用率比较高的属性或者方法，这里我们来看一下一个埋点的插件是如何实现的。
+
+*在讲解埋点之前我们需要先了解一下PV的概念：PV(page view)，即页面浏览量，或点击量，PV之于网站，就像收视率之于电视。*
+
+通过Nuxt提供的 `plugins` 配置项，我们可以轻而易举的在 `Vue` 中使用插件。相关配置项见上方 [项目配置](#4)。
+
+同时我们需要在 `plugins` 目录下创建对应的文件，以保证配置项可以正确的加载这个文件。
+
+> plugins/dm-tracker.js
+
+```js
+//- 将发起pv统计的方法挂载到Vue原型下
+//- 让每个组件都能通过`this.$tracker`访问
+
+import Vue from 'vue'
+import { trackerPlugins } from '../utils/tracker.js'
+
+Vue.use(trackerPlugins)
+```
+
+又是一次涉及每一个页面都有的操作，要是在每个页面文件里加岂不是很麻烦，所以我们在 `layout/default.vue` 里面对 `$route` 进行监听，同时设置 watch 参数 `immediate: true`
 
 > layout/default.vue
 
 ```js
 ...
   mounted() {
-    //- 通过监听路由变化 执行不同的pv埋点统计
+    //- 通过监听路由变化，执行不同的pv统计，同时 `immediate: true` 使得每次页面初始进来也会默认执行一次
     this.$watch('$route', ({ name }) => this.$tracker('-', name), { immediate: true })
   }
 ...
 ```
 
-*EV*
+`utils/tracker.js` 里是一些发起 `PV` 统计所调用的代码（隐去了部分业务代码）
 
-> utils/track.js
+> utils/tracker.js
 
 ```js
+...
+
+/**
+ * 发起PV统计
+ * @param {String} caFrom - ev: @ca_from
+ * @param {Object} vueRouteName - vm.$route.name
+ * @return {Promise} 成功`then`或者失败`catch`的回调
+ */
+const tracker = (caFrom, vueRouteName) => {
+  ...
+}
+
+export default tracker
+
+export const trackerPlugins = {
+  install(Vue, options) {
+    Vue.prototype.$tracker = tracker
+  }
+}
 ```
+
+### 本人文笔拙劣，如有错误，欢迎各路大神拍砖！
