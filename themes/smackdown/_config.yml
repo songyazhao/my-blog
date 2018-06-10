@@ -68,7 +68,7 @@ friends:
 # 不开启——
 #aboutme: false
 #开启——
-aboutme: true
+# aboutme: 就职于斗米，前端重度极客。
 
 swift_search:
   enable: true

@@ -24,6 +24,8 @@ categories: Vue
 - [状态管理(vuex)](#6)
 - [一键静态化](#7)
 
+<!-- more -->
+
 <h2 id="1">Nuxt.js简单介绍</h2>
 
 2016 年 10 月 25 日，[zeit.co](https://zeit.co/) 背后的团队对外发布了 [Next.js](https://zeit.co/blog/next)，一个 React 的服务端渲染应用框架。几小时后，与 Next.js 异曲同工，一个基于 Vue.js 的服务端渲染应用框架应运而生，我们称之为：Nuxt.js。
@@ -39,7 +41,6 @@ Nuxt.js 是一个基于 Vue.js 的通用应用框架。通过对客户端/服务
 - 项目结构自动代码分层
 - 支持静态化（本文将着重以此展开介绍）
 
-<!-- more -->
 
 <h2 id="3">项目创建</h2>
 
