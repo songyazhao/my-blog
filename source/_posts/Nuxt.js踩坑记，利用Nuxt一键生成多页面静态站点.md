@@ -5,11 +5,11 @@ tags: [Vue, Nuxt]
 categories: Vue
 ---
 
-<!-- 一件产品，要经历怎样的构思，才能打造完美体验。 -->
+<!-- 一件产品，要经历怎样的构思，才能造就不一样体验。 -->
 <!-- 一份设计，要经历怎样的揣摩，才能。。 -->
 <!-- 一个网页，要经历怎样的过程，才能抵达用户面前。 -->
 
-本文结合实际项目进行讲解，部分案例摘自 [Nuxt.js](https://nuxtjs.org) 官方文档。
+本文结合实际项目基于 `Nuxt.js@1.4.0` 进行讲解，部分案例摘自 [Nuxt.js](https://nuxtjs.org) 官方文档。*如需转载，请标明出处。*
 
 - [Nuxt.js简单介绍](#1)
 - [为什么使用Nuxt.js?](#2)
@@ -45,7 +45,7 @@ Nuxt.js 是一个基于 Vue.js 的通用应用框架。通过对客户端/服务
 
 为了便于大家快速使用，Nuxt.js 提供了很多模板
 
-[starter-template](https://github.com/nuxt-community/adonuxt-template): 基础Nuxt.js模板
+[starter-template](https://github.com/nuxt-community/starter-template): 基础Nuxt.js模板
 
 [typescript-template](https://github.com/nuxt-community/typescript-template): 基于Typescript的Nuxt.js模板
 
