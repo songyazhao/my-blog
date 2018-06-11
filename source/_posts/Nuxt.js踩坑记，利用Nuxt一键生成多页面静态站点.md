@@ -598,10 +598,28 @@ module.exports = {
 
 Nuxt.js 中，抽象出来一个新的概念：layout，这样将页面划分为三层：1. layout、2. page、3. component，很方便的在多种布局方案中切换。
 
-<!-- 页面布局图示__start -->
-<style>.layout, .page, .component {border: 2px solid cornflowerblue;text-align: center;padding: 10px 0;box-sizing: border-box;}.layout {color: brown;font-size: 20px;width: 400px;}.page, .component {margin: 25px;}</style>
-<div class="layout">layout<div class="page">page<div class="component">component</div><div class="component">component</div><div class="component">component</div></div></div>
-<!-- 页面布局图示__end -->
+```js
++------------------------------+
+|            layout            |
+|                              |
+|   +----------------------+   |
+|   |         page         |   |
+|   |                      |   |
+|   |   +--------------+   |   |
+|   |   |  component   |   |   |
+|   |   +--------------+   |   |
+|   |                      |   |
+|   |   +--------------+   |   |
+|   |   |  component   |   |   |
+|   |   +--------------+   |   |
+|   |                      |   |
+|   |   +--------------+   |   |
+|   |   |  component   |   |   |
+|   |   +--------------+   |   |
+|   +----------------------+   |
+|                              |
++------------------------------+
+```
 
 在页面 `pages/*.vue` 文件中可以指定一种布局，不指定的时候会使用默认布局 `default`。
 
