@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>XSS攻击演示</title>
+  <style>
+    body {
+      font-size: 24px;
+    }
+    .w {
+      width: 620px;
+      margin: 0 auto;
+    }
+    form {
+      display: flex;
+    }
+    input {
+      height: 50px;
+      box-sizing: border-box;
+    }
+    input[name=searchValue] {
+      flex: 1;
+      padding: 0 15px;
+      font-size: 24px;
+    }
+    input[type=submit] {
+      -webkit-appearance: button;
+      width: 80px;
+      font-size: 28px;
+    }
+    .preview::before {
+      content: 'Preview:';
+    }
+    .stored-xss-btn {
+      margin-top: 15px;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+<section id="reflected-xss" class="w">
+  <h2>反射型的 XSS 攻击</h2>
+  <form action="/search" method="get">
+    <input type="text" name="searchValue" value="<script>alert('hello xiaoming')</script>">
+    <input type="submit" value="搜索">
+  </form>
+</section>
+
+<section id="stored-xss" class="w">
+  <h2>存储型的 XSS 攻击</h2>
+  <quill-editor
+    v-model="content"
+    ref="myQuillEditor"
+    :options="editorOption">
+  </quill-editor>
+  <div class="preview ql-editor" v-html="content"></div>
+  <div class="stored-xss-btn">
+    <input type="submit" value="提交" @click="handleSubmit">
+  </div>
+</section>
+
+<!-- Include the Quill library -->
+<script src="/public/axios.js"></script>
+<script src="/public/js.cookie.js"></script>
+<script src="/public/quill.js"></script>
+<script src="/public/vue.js"></script>
+<!-- Quill JS Vue -->
+<script src="/public/vue-quill-editor.js"></script>
+<!-- Include stylesheet -->
+<link href="/public/quill.core.css" rel="stylesheet">
+<link href="/public/quill.snow.css" rel="stylesheet">
+<link href="/public/quill.bubble.css" rel="stylesheet">
+<script type="text/javascript">
+  Vue.use(window.VueQuillEditor)
+
+  const Main = {
+    data () {
+      return {
+        content: '<h2>I am StoredXSS</h2>',
+        editorOption: {
+          // some quill options
+        }
+      }
+    },
+    methods: {
+      async handleSubmit() {
+        const _csrf = Cookies.get('csrfToken')
+        const { data: { code, msg, data } } = await axios.post('/save', { content: this.content, _csrf })
+        if (msg === 'ok') {
+          console.log('保存成功', data)
+          window.location.href = `/content?id=${data.id}`
+        }
+      }
+    }
+  }
+  const Ctor = Vue.extend(Main)
+  window.VM = new Ctor().$mount('#stored-xss')
+</script>
+</body>
+
+</html>

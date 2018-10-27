@@ -1,0 +1,46 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Web 安全讲解配套案例",
+  "private": true,
+  "dependencies": {
+    "egg": "^2.10.0",
+    "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.9.1",
+    "egg-view-nunjucks": "^2.2.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.8.3",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.19.7",
+    "eslint": "^5.4.0",
+    "eslint-config-egg": "^7.1.0",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-example",
+    "stop": "egg-scripts stop --title=egg-server-example",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "8"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "宋亚昭<syazhao@foxmail.com>",
+  "license": "MIT"
+}
