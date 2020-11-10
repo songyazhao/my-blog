@@ -12,7 +12,7 @@
     "deploy": "hexo deploy -g"
   },
   "dependencies": {
-    "hexo": "^3.8.0",
+    "hexo": "^3.9.0",
     "hexo-asset-image": "https://github.com/xcodebuild/hexo-asset-image",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.5",
